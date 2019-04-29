@@ -1,0 +1,28 @@
+---
+parameters:
+  server:
+    type: TargetSpec
+    description: "The target system to make into a template."
+  environment:
+    type: String
+    description: "What puppet environment the target belongs in."
+  role:
+    type: String
+    description: "The puppet role to assign to the system."
+  master:
+    type: String
+    description: "The puppet master FQDN."
+
+steps:
+  - command: 'echo hello world'
+    target: $server
+    description: 'test hello world'
+  - task: bootstrap::make_facts
+    target: $server
+    parameters:
+      role: $role
+      environment: $environment
+  - task: bootstrap::install_puppet
+    target: $server
+    parameters:
+      master: $master

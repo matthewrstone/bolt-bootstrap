@@ -1,0 +1,14 @@
+{
+    "name": "make_facts",
+    "description": "Creates a role and environment trusted fact",
+    "parameters": {
+        "master": {
+          "type": "String",
+          "description": "The puppet server"
+        }
+    },
+    "implementations": [
+        {"name": "install_puppet.sh", "requirements": ["shell"]},
+        {"name": "install_puppet.ps1", "requirements": ["powershell"]}
+    ]
+}
